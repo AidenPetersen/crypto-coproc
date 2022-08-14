@@ -1,0 +1,4 @@
+core/defs.v
+core/sha256.v
+core/sbox.v
+core/aes.v
