@@ -1,4 +1,4 @@
-default: 
+default: vcd
 
 clean:	
 	rm -rf *.json *.blif *.edif *.out *.vcd *.values

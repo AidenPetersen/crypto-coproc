@@ -1,4 +1,3 @@
-`timescale 1ns/1ps
 // Definitions
 module top(   
   input clk,
