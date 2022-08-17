@@ -1,4 +1,3 @@
-`timescale 1ns/1ps
 // Implements the sha256 algorithms
 module sha256(
     // Inputs

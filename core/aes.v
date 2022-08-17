@@ -1,5 +1,3 @@
-`timescale 1ns/1ps
-
 module aes(
     // Inputs
     input clk,

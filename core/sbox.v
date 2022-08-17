@@ -1,4 +1,3 @@
-`timescale 1ns/1ps
 // The shared non-linear middle part for AES and AES^-1
 module sbox_inverse_mid(
     input  [20:0] x,
