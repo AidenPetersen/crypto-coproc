@@ -1,1 +1,2 @@
 tb/top_tb.v
+tb/regfile_tb.v
