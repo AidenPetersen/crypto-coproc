@@ -41,11 +41,11 @@ module write_decode_tb;
         write <= 1;
         // Load
         write_addr <= 12;
-        write_data <= {11'h008, 5'd13, 16'habcd};
+        write_data <= {11'd8, 5'd13, 16'd1234};
         #10
         // R-Type
         write_addr <= 3;
-        write_data <= {11'h000, 5'd3, 5'd4, 11'h000};
+        write_data <= {11'd0, 5'd3, 5'd4, 11'd0};
         #10
 
         $finish;
