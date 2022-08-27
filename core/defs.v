@@ -8,3 +8,6 @@
 `define AES_D_FINAL 2'b01
 `define AES_E_MID 2'b10
 `define AES_E_FINAL 2'b11
+
+`define LOAD_LLI 2'b00
+`define LOAD_LUI 2'b01

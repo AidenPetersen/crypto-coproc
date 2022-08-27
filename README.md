@@ -28,4 +28,4 @@ The instruction formats will be:
 ## Implementation
 This project is primarily for me to learn the basics of busses and to implement some cool algorithms in hardware. It currently is not pipelined, but it could be pipelined using a 4 step pipeline:
 Bus/Decode -> Register Read -> Execute -> Write Back
-Since we don't have branching, it would be relatively easy to implement. It would just require some forwarding from WB -> RR and WB -> EX.
+Since we don't have branching, it would be relatively easy to implement (Compared to a real CPU). It would just require some forwarding from WB -> RR and WB -> EX.

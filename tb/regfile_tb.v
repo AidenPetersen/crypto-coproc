@@ -43,7 +43,6 @@ module regfile_tb;
         $finish;
     end
 
-
     initial begin
         $dumpfile("regfile_tb.vcd");
         $dumpvars(0, regfile_tb);

@@ -1,3 +1,7 @@
+TEST_DIR = tb
+CORE_DIR = core
+BUILDS_DIR = builds
+
 default: vcd
 
 clean:	
@@ -5,14 +9,25 @@ clean:
 	rm -rf builds
 	@ls -l
 
-vcd:  
+vcd:
+	@echo "-------------------------------------------------------"
 	@echo "Generating the VDD executable script from Verilog files"
-	@mkdir -p builds/vcd
-	iverilog -Wall -o builds/vcd/top.out top.v \
-		`cat verilog.includes | grep -v "^#" | tr '\012' ' '` \
-		`cat verilog_tb.includes | grep -v "^#" | tr '\012' ' '`
-	@echo "Running the top.out file to generate gtkwave file."
-	@(cd builds/vcd; ./top.out)
+	@echo "-------------------------------------------------------"
+	@mkdir -p ${BUILDS_DIR}/vcd
+	@echo "$(wildcard ${TEST_DIR}/*)"
+	@for file in $(notdir $(basename $(wildcard ${TEST_DIR}/*))); do\
+		echo "-------------------------------------------------------";\
+		echo "Compiling $$file...";\
+		echo "-------------------------------------------------------";\
+		iverilog -Wall -o "${BUILDS_DIR}/vcd/$(addsuffix .vvp,$$file)" top.v ${CORE_DIR}/* "${TEST_DIR}/$(addsuffix .v,$$file)";\
+		echo "-------------------------------------------------------";\
+		echo "Generating VCD Wave for $$file...";\
+		echo "-------------------------------------------------------";\
+		cd ${BUILDS_DIR}/vcd;\
+		vvp $(addsuffix .vvp,$$file);\
+		cd ../..;\
+	done
+
 
 cycloneiv: 
 	@echo "Generating Cyclone IV files"
