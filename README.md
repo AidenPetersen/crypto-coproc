@@ -24,7 +24,7 @@ The instruction formats will be:
   - [ 31:21 ] opcode
   - [ 20:16 ] rs1
   - [ 15:11 ] rs2
-  - [ 10:0 ] nothing
+  - [ 10:0 ] imm
 
 ## Implementation
 This project is primarily for me to learn the basics of busses and to implement some cool algorithms in hardware. It currently is not pipelined, but it could be pipelined using a 4 step pipeline:

@@ -29,8 +29,8 @@ vcd:
 	done
 
 
-cycloneiv: 
-	@echo "Generating Cyclone IV files"
-	@mkdir -p builds/cycloneiv
-	yosys -p "-family cycloneiv -edif builds/cycloneiv/top_cycloneiv.edif -blif builds/cycloneiv/top_cycloneiv.blif -json builds/cycloneiv/top_cycloneiv.json" top.v \
-		`cat verilog.includes | grep -v "^#" | tr '\012' ' '`
+# cycloneiv: 
+# 	@echo "Generating Cyclone IV files"
+# 	@mkdir -p builds/cycloneiv
+# 	yosys -p "-family cycloneiv -edif builds/cycloneiv/top_cycloneiv.edif -blif builds/cycloneiv/top_cycloneiv.blif -json builds/cycloneiv/top_cycloneiv.json" top.v \
+# 		`cat verilog.includes | grep -v "^#" | tr '\012' ' '`

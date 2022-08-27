@@ -9,7 +9,7 @@ module write_decode(
     // Outputs
     output reg [4:0] rs1,
     output reg [4:0] rs2,
-    output [4:0] rd, 
+    output [4:0] rd,
     output reg [15:0] imm,
     output load,
     output write_enable,
@@ -29,12 +29,12 @@ module write_decode(
             rs1 <= write_data[20:16];
             rs2 <= 0;
             imm <= write_data[15:0];
-        end 
+        end
         // normal "R"-type instructions
         else begin
             rs1 <= write_data[20:16];
             rs2 <= write_data[15:11];
-            imm <= 0;
+            imm <= {5'b00000, write_data[10:0]};
         end
     end
 endmodule

@@ -1,9 +1,9 @@
 `timescale 1ns/1ps
 module regfile_tb;
     reg clk, rst, write_enable;
-    reg [4:0] write_addr, read0_addr, read1_addr;
+    reg [4:0] write_addr, read0_addr, read1_addr, read2_addr;
     reg [31:0] write_data;
-    wire [31:0] read0_data, read1_data;
+    wire [31:0] read0_data, read1_data, read2_data;
     
     regfile dut (
         .clk(clk),
@@ -16,9 +16,11 @@ module regfile_tb;
 
         .read0_addr(read0_addr),
         .read1_addr(read1_addr),
+        .read2_addr(read2_addr),
 
         .read0_data(read0_data),
-        .read1_data(read1_data)
+        .read1_data(read1_data),
+        .read2_data(read2_data)
     );
 
     always #5 clk = ~clk;
@@ -32,6 +34,7 @@ module regfile_tb;
         write_addr <= 15;
         read0_addr <= 15;
         read1_addr <= 0;
+        read2_addr <= 1;
         #10
         write_data <= 123;
         write_addr <= 0;
