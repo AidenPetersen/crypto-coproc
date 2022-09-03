@@ -27,15 +27,15 @@ module top(
     wire write;
     wire [4:0] write_addrs;
     wire [31:0] write_data;
-    wire write_error;
-    wire write_done;
+    reg write_error;
+    reg write_done;
     wire [3:0] write_strobe;
     // Local read wires
     wire read;
     wire [4:0] read_addrs;
     wire [31:0] read_data;
-    wire read_error;
-    wire read_done;
+    reg read_error;
+    reg read_done;
 
     axi a(
         .write(write),
@@ -87,9 +87,9 @@ module top(
         .write_data(write_data),
         .write(write),
 
-        .rs1(rs1_reg_write),
-        .rs2(rs2_reg_write),
-        .rd(rd_reg_write),
+        .rs1(rs1_reg),
+        .rs2(rs2_reg),
+        .rd(rd_reg),
         .imm(imm),
         .write_enable(write_enable),
         .operation(operation)
@@ -99,6 +99,8 @@ module top(
     // Register file
     // -----------------------------------------
     wire [31:0] rs1_data, rs2_data;
+    wire [31:0] writeback_data;
+
     regfile regf(
         .clk(s_axi_aclk),
         .rst(s_axi_aresetn),
@@ -107,7 +109,7 @@ module top(
         .write_addr(write_addrs),
         .write_data(writeback_data),
 
-        .read0_addr(read_addrs),
+        .read0_addr(read ? read_addrs : 5'b00000),
         .read1_addr(rs1_reg),
         .read2_addr(rs2_reg),
 
@@ -119,7 +121,6 @@ module top(
     // -----------------------------------------
     // Computation logic unit
     // -----------------------------------------
-    wire [31:0] writeback_data
     comp_unit cu(
         .clk(s_axi_aclk),
         .rst(s_axi_aresetn),
@@ -129,7 +130,12 @@ module top(
         .operation(operation),
         .out(writeback_data)
     );
-
+    initial begin
+        write_done = 0;
+        write_error = 0;
+        read_error = 0;
+        read_done = 0;
+    end
     // -----------------------------------------
     // Axi response logic
     // -----------------------------------------
@@ -141,7 +147,9 @@ module top(
             write_done <= 1;
         
         // Assign Read
-        if()
+        if(read_done)
+            read_done <= 0;
+        if(read)
+            read_done <= 1;
     end
-
 endmodule

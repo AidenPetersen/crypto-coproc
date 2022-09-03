@@ -15,7 +15,7 @@ module comp_unit(
         .clk(clk),
         .rst(rst),
         .opcode(subcode),
-        .immediate(rs2[15:0]),
+        .immediate(immediate),
         .rs(rs1),
 
         .rd(load_out)
@@ -44,49 +44,49 @@ module comp_unit(
     always @(*) begin
         case (operation)
             `OP_SHA256_SIG0: begin 
-                out = sha256_out;
-                subcode = `SHA256_SIG0;
+                out <= sha256_out;
+                subcode <= `SHA256_SIG0;
             end
             `OP_SHA256_SIG1: begin 
-                out = sha256_out;
-                subcode = `SHA256_SIG1;
+                out <= sha256_out;
+                subcode <= `SHA256_SIG1;
 
             end
             `OP_SHA256_SUM0: begin 
-                out = sha256_out;
-                subcode = `SHA256_SUM0;
+                out <= sha256_out;
+                subcode <= `SHA256_SUM0;
             end
             `OP_SHA256_SUM1: begin 
-                out = sha256_out;
-                subcode = `SHA256_SUM1;
+                out <= sha256_out;
+                subcode <= `SHA256_SUM1;
             end
             `OP_AES_D_MID: begin 
-                out = aes_out;
-                subcode = `AES_D_MID;
+                out <= aes_out;
+                subcode <= `AES_D_MID;
             end
             `OP_AES_D_FINAL: begin 
-                out = aes_out;
-                subcode = `AES_D_FINAL;
+                out <= aes_out;
+                subcode <= `AES_D_FINAL;
             end
             `OP_AES_E_MID: begin 
-                out = aes_out;
-                subcode = `AES_E_MID;
+                out <= aes_out;
+                subcode <= `AES_E_MID;
             end
             `OP_AES_E_FINAL: begin 
-                out = aes_out;
-                subcode = `AES_E_FINAL;
+                out <= aes_out;
+                subcode <= `AES_E_FINAL;
             end
             `OP_LOAD_LLI: begin
-                out = load_out;
-                subcode = `LOAD_LLI;
+                out <= load_out;
+                subcode <= `LOAD_LLI;
             end
             `OP_LOAD_LUI: begin
-                out = load_out;
-                subcode = `LOAD_LUI;
+                out <= load_out;
+                subcode <= `LOAD_LUI;
             end
             default: begin
-                out = 0;
-                subcode = 0;
+                out <= 0;
+                subcode <= 0;
             end
         endcase
     end
