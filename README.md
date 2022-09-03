@@ -19,7 +19,7 @@ Along with some load instructions necessary to get data into the coprocessor:
 ## Communication
 The coprocessor will be communicated with the AXI4 Lite bus.
 
-The instruction will be sent via the s_axi_wdata port with the following formats:
+The instructions will be sent via the `s_axi_wdata port` with the following formats:
 
 - Loads (LUI, LLU): 
   - [ 31:21 ] opcode
