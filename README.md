@@ -9,10 +9,15 @@ It will include the following instructions:
 - sha256sig0 (SHA2-256 Sigma0)
 - sha256sum0 (SHA2-256 Sigma0)
 - sha256sig1 (SHA2-256 Sigma1)
-- sha256sig1 (SHA2-256 Sigma1)
+- sha256sig1 (SHA2-256 Sigma1) 
+
+Along with some load instructions necessary to get data into the coprocessor:
+- LUI (Load upper immediate)
+- LLU (Load lower immediate)
+
 
 ## Communication
-The coprocessor will be communicated with over my implementation of the AXI4 Lite bus, where the reads will read one of the 32 bit registers, and the write data will send an instruction to the coprocessor the execture and store in the coprocessor's register file.
+The coprocessor will be commasdunicated the AXI4 Lite bus, where the reads will read one of the 32 bit registers, and the write data will send an instruction to the coprocessor the execture and store in the coprocessor's register file.
 
 The instruction formats will be:
 
